@@ -19,7 +19,6 @@
 
 
 CGlobalVars *g_GlobalVars = NULL;
-IVEngineServer *g_EngineServer = NULL;
 IPlayerInfoManager *g_PlayerInfoManager = NULL;
 
 using namespace GarrysMod::Lua;
@@ -42,39 +41,24 @@ GMOD_MODULE_OPEN()
 {
 
 	CreateInterfaceFn serverFactory = Sys_GetFactory(SERVER_LIB);
-	CreateInterfaceFn engineFactory = Sys_GetFactory(ENGINE_LIB);
 
 	if (!serverFactory) {
-		LUA->ThrowError("error getting serverFactory!! (basically fuck you from Garry)");
-		return 0;
-	}
-
-	if (!engineFactory) {
-		LUA->ThrowError("error getting engineFactory!! (still basically fuck you from Garry)");
+		LUA->ThrowError("error getting serverFactory!!");
 		return 0;
 	}
 
 	g_PlayerInfoManager = (IPlayerInfoManager *)serverFactory(INTERFACEVERSION_PLAYERINFOMANAGER, NULL);
 
 	if (!g_PlayerInfoManager) {
-		LUA->ThrowError("error getting g_PlayerInfoManager!! (still basically fuck you from Garry)");
+		LUA->ThrowError("error getting g_PlayerInfoManager!!");
 		return 0;
 	}
-
-	/*
-	g_EngineServer = (IVEngineServer*)engineFactory(INTERFACEVERSION_VENGINESERVER, NULL);
-	if (!g_EngineServer) {
-		LUA->ThrowError("error getting g_EngineServer!! (still basically fuck you from Garry)");
-		return 0;
-	}
-	*/
-
+	
 	ConColorMsg(Color(255, 255, 255, 255), "gmsv_fps by ");
 	ConColorMsg(Color(0, 50, 255, 255), "thelastpenguin\n");
 	ConColorMsg(Color(100, 100, 100, 255), "\tBuilt on " __DATE__ " at " __TIME__ "\n");
 
 	g_GlobalVars = g_PlayerInfoManager->GetGlobalVars();
-
 
 	LUA->PushSpecial( GarrysMod::Lua::SPECIAL_GLOB );
 
