@@ -2,11 +2,9 @@
 #include <stdio.h>
 
 #include "edict.h"
-#include "eiface.h" // engine interface.h IVEngineServer needs this
 #include "engine/iserverplugin.h"
 #include "game/server/iplayerinfo.h"
 
-#include "Color.h"
 #include "tier0/dbg.h"
 
 #ifdef _LINUX
