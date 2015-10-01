@@ -53,10 +53,6 @@ GMOD_MODULE_OPEN()
 		LUA->ThrowError("error getting g_PlayerInfoManager!!");
 		return 0;
 	}
-	
-	ConColorMsg(Color(255, 255, 255, 255), "gmsv_fps by ");
-	ConColorMsg(Color(0, 50, 255, 255), "thelastpenguin\n");
-	ConColorMsg(Color(100, 100, 100, 255), "\tBuilt on " __DATE__ " at " __TIME__ "\n");
 
 	g_GlobalVars = g_PlayerInfoManager->GetGlobalVars();
 
